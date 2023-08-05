@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Repairs
+from .forms import RepairForm
 
 
 # repairs = [
@@ -20,3 +21,10 @@ def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     context = {'repair':repair}
     return render(request, 'garage/repair.html', context)
+
+def createRepair(request):
+    form = RepairForm()
+    if request.method == 'POST':
+        print(request.POST)
+    context = {'form': form}
+    return render(request, 'garage/create_repair.html', context)
