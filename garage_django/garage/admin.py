@@ -5,3 +5,4 @@ from .models import Repairs
 # Register your models here.
 
 admin.site.register(Repairs)
+# admin.site.register(PersonMechanic)
