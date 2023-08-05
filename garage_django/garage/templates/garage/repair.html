@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1>NAPRAWA: {{repair.main_fault}}</h1>
+<h3>STATUS: {{repair.status}}</h3>
+<hr>
+<a style="size: small;">Utworzono: {{repair.pick_up_date}}</a><br>
+<a style="size: small;">Ostatnie zmiany: {{repair.updated_at}}</a>
+<p>Szczegółowy opis:</p>
+<p>{{repair.description}}</p>
+
+{% endblock content %}
+
