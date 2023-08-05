@@ -1,7 +1,7 @@
 # SDAproject
 # Car Workshop Communication App
 
-![App Logo]([fc6e0121a0b840d2a8dad3e67ccfdec2.png](https://github.com/SDAproject-group4/SDAproject/blob/main/fc6e0121a0b840d2a8dad3e67ccfdec2.png))
+![App Logo](https://github.com/SDAproject-group4/SDAproject/blob/main/fc6e0121a0b840d2a8dad3e67ccfdec2.png)
 
 Welcome to the repository of the Car Workshop Communication App! This application is built using Python and Django, aiming to facilitate the car repair process by allowing customers to track repair status and approve repair costs.
 
