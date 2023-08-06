@@ -1,19 +1,46 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1>Home</h1>
+<style>
+    .home-conainter {
+        display:grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
 <div>
+    <h1 style="text-align: center;">STRONA GŁÓWNA</h1>
+    
+
+</div>
+<div class="home-conainter">
     <div>
-        <a href="{% url 'createrepair' %}">Dodaj nowy samochód</a>
+        <h2>Statystyki:</h2>
+        Liczba samochodów na warsztacie: <br>{{ repairs.count }}<BR><BR>
+        Liczba zamkniętych zleceń: <br>{{ count}}
     </div>
     <div>
         <h2>Lista napraw:</h2>
+        <h3>
+            <button>
+                <a href="{% url 'createrepair' %}">Dodaj zlecenie</a>
+            </button>
+        </h3>
         {% for repair in repairs %}
-        <div>
-            <h3>{{ repair.id }} -- <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a></h3>
-    
+        
+        <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a>
+        <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user_lastname}}</a>
+        <hr>
+        {% endfor %}    
     </div>
-    {% endfor %}    
+    <div>
+        <h2>Twój profil:</h2>
+        <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user.last_name}}</a>
+
+    </div>
+
+    </div>
 </div>
 {% endblock content %}
 

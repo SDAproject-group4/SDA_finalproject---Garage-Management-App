@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Twój profil </h1>
+<h2>Profil uźytkownika {{user.username}}</h2></2>
+<div>
+    <div>
+        <div>        {{user.first_name}} {{user.last_name}}
+
+
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+        <p>{user.first</p>
+        <pa></pa>
+    </div>
+    <div>
+        <h2>Lista napraw:</h2>
+        {% for repair in repairs %}
+        <div>
+            <h3>{{ repair.id }} -- <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a></h3>
+    
+    </div>
+    {% endfor %}    
+</div>
+{% endblock content %}
+

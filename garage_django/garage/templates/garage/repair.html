@@ -2,9 +2,14 @@
 {% block content %}
 <h1>NAPRAWA: {{repair.main_fault}}</h1>
 <h3>STATUS: {{repair.status}}</h3>
+<button>
+    <a href="{% url 'updaterepair' repair.id %}" id="edit-room">EDIT</a>
+</button>
 <hr>
 <a style="size: small;">Utworzono: {{repair.pick_up_date}}</a><br>
-<a style="size: small;">Ostatnie zmiany: {{repair.updated_at}}</a>
+<a style="size: small;">Ostatnie zmiany: {{repair.updated_at}}</a><br>
+
+<a style="size: small;">Czas na warsztacie {{repair.pick_up_date|timesince}}</a>
 <p>Szczegółowy opis:</p>
 <p>{{repair.description}}</p>
 
