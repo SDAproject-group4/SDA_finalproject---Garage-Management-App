@@ -1,7 +1,9 @@
 {% extends 'main.html' %}
 {% block content %}
 <h1>NAPRAWA: {{repair.main_fault}}</h1>
+<h2>{{repair.car}}</h2>
 <h3>STATUS: {{repair.status}}</h3>
+<h4>Rozpoczynający zlecenie: {{repair.serv_mechanic}}</h4>
 <button>
     <a href="{% url 'updaterepair' repair.id %}" id="edit-room">EDIT</a>
 </button>

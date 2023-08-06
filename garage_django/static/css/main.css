@@ -1,0 +1,25 @@
+ body {
+      background-color: Lightgray;
+      font-family: 'Rubik', sans-serif;
+      
+    }
+.navbar-container {
+    background-color: gray;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    text-align: center;
+    color: white;
+    position: relative;
+    border: 3px solid whitesmoke;
+    }
+.home-conainter {
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    text-align: center;
+}
+.navbar-logo {
+    margin: auto;
+    display:block;
+      
+}

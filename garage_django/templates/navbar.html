@@ -1,16 +1,9 @@
-<style>
-    .navbar-container {
-    background-color: gray;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    text-align: center;
-    color: white;
-    }
-</style>
+{% load static %}
+
 
 <div class="navbar-container">
-    <div>
-        <a href="/"><img src="https://brandslogos.com/wp-content/uploads/images/large/garage-logo.png" height="100"></a>
+    <div class="navbar-logo">
+        <a href="/"><img src="{% static 'images/sample-logo.png' %}" width="200"></a>
 
     </div>
     <div>
