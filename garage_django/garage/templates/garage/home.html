@@ -10,25 +10,35 @@
     <div>
         <h2>Statystyki:</h2>
         Liczba samochodów na warsztacie: <br>{{ repairs.count }}<BR><BR>
-        Liczba zamkniętych zleceń: <br>{{ count}}
+        Liczba zamkniętych zleceń: <br>{{ closed_case }}
     </div>
     <div>
-        <h2>Lista napraw:</h2>
+        <h2>Lista aktywnych napraw:</h2>
         <h3>
             <button>
                 <a href="{% url 'createrepair' %}">Dodaj zlecenie</a>
             </button>
         </h3>
         {% for repair in repairs %}
+        <div style="margin:5px;">
+            <a href="{% url 'repair' repair.id %}">{{ active_repairs.main_fault|upper }}</a>
+        </div>
         
-        <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a>
-        <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user_lastname}}</a>
-        <hr>
-        {% endfor %}    
+        {% endfor %}
     </div>
     <div>
-        <h2>Twój profil:</h2>
-        <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user.last_name}}</a>
+        <h2>Lista samochodów:</h2>
+        <!-- <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user.last_name}}</a> -->
+        <h3>
+            <button>
+                <a href="{% url 'addcar' %}">Dodaj samochód</a>
+            </button>
+        </h3>
+        {% for car in cars %}
+
+        <a href="{% url 'car' car.id %}">{{car.manufacturer}} {{ car.model }}, {{ car.year}}</a><hr>
+
+        {% endfor %}    
 
     </div>
 

@@ -1,21 +1,26 @@
 from django.shortcuts import render, redirect
-from .models import Repairs
+from .models import Repairs, Car
 from .forms import RepairForm, carForm
 from django.contrib.auth.models import User
+import requests
 
 
 
 def home(request):
     repairs = Repairs.objects.all()
-    return render(request, 'garage/home.html', {'repairs':repairs})
-
-def login(request):
-    return render(request, 'login.html')
+    cars = Car.objects.all()
+    context = {'repairs':repairs, 'cars':cars}
+    return render(request, 'garage/home.html', context)
 
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     context = {'repair':repair}
     return render(request, 'garage/repair.html', context)
+
+# def activeRepair(request):
+#     active_repairs = Repairs.objects.filter(status="New")
+#     context = {'active_repairs':active_repairs}
+#     return render(request, 'garage/repair.html', context)
 
 def createRepair(request):
     form = RepairForm()
@@ -51,10 +56,21 @@ def addCar(request):
     if request.method == 'POST':
         form = carForm(request.POST)
         if form.is_valid():
-            repair = form.save(commit=False)
-            repair.user = request.user
-            repair.save()
+            addcar = form.save(commit=False)
+            addcar.user = request.user
+            addcar.save()
             return redirect('home')
     context = {'form': form}
     return render(request, 'garage/add_car.html', context)
+
+def car(request, pk):
+    car = Car.objects.get(id=pk)
+    repair = Repairs.objects.get(id=pk)
+    context = {'car':car, 'repair':repair}
+    return render(request, 'garage/car.html', context)
+
+def repairsCount(request):
+    closed_case = Repairs.objects.filter(status="End").count()
+    context = {'closed_case':closed_case}
+    return render(request, 'garage/home.html', context)
 

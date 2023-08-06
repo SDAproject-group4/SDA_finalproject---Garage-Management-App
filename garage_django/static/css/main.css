@@ -6,11 +6,11 @@
 .navbar-container {
     background-color: gray;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3fr 1fr;
     text-align: center;
     color: white;
     position: relative;
-    border: 3px solid whitesmoke;
+    border: 5px solid whitesmoke;
     }
 .home-conainter {
     display:grid;
@@ -21,5 +21,41 @@
 .navbar-logo {
     margin: auto;
     display:block;
+      
+}
+.repairlist {
+    color: black;
+    margin-top: 5px;
+}
+.car-conainter {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+}
+.repair-conainter {
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    text-align: center;
+}
+.repair-title{
+    display:grid;
+    justify-content: center;
+    text-align: center;
+}
+.navbar-garage-title {
+    margin: 0;
+    padding: 0;
+    display:grid;
+    justify-content: center;
+    text-align: center;
+      
+}
+.navbar-garage-title h1{
+    margin: 30;
+    display:grid;
+    justify-content: center;
+    text-align: center;
       
 }
