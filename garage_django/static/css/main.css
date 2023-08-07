@@ -1,22 +1,26 @@
  body {
-      background-color: Lightgray;
+      background-color: #242c3a;
       font-family: 'Rubik', sans-serif;
+      color: #F1FFF7;
       
     }
 .navbar-container {
-    background-color: gray;
+    background-color: #445064;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     text-align: center;
     color: white;
     position: relative;
-    border: 5px solid whitesmoke;
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
     }
 .home-conainter {
     display:grid;
     grid-template-columns: 1fr 3fr 1fr;
     justify-content: center;
     text-align: center;
+    background-color: #29303e;
+
 }
 .navbar-logo {
     margin: auto;
@@ -46,7 +50,6 @@
 }
 .navbar-garage-title {
     margin: 0;
-    padding: 0;
     display:grid;
     justify-content: center;
     text-align: center;
@@ -58,4 +61,31 @@
     justify-content: center;
     text-align: center;
       
+}
+.activ-repair-list {
+    border-radius:20px;
+    margin:10px;    
+    padding: 2px;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    text-align: center;
+    background-color: #0e1117;
+    
+}
+.container-content {
+    background-color: #242c3a;
+    border-color: #F1FFF7;
+    border: 10px;
+    margin-top: 10px;
+    border-radius: 10px; 
+    border-color: #F1FFF7;  
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+a:visited {
+    color:#F1FFF7
+}
+.button {
+    background-color: blue;
 }

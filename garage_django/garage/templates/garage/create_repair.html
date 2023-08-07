@@ -1,7 +1,10 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div>
+<div class="container-content">
+    <h2>
+        Dodaj naprawę 
+    </h2>
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
