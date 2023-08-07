@@ -6,6 +6,7 @@ import requests
 
 
 
+
 def home(request):
     repairs = Repairs.objects.all()
     cars = Car.objects.all()
@@ -73,4 +74,5 @@ def repairsCount(request):
     closed_case = Repairs.objects.filter(status="End").count()
     context = {'closed_case':closed_case}
     return render(request, 'garage/home.html', context)
+
 

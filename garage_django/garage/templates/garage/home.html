@@ -45,6 +45,19 @@
             {% for car in cars %}
     
             <p><a href="{% url 'car' car.id %}">{{car.manufacturer}} {{ car.model }}, {{ car.year}}</a></p>
+
+
+{% block content %}
+<h1>Home</h1>
+<div>
+    <div>
+        <a href="{% url 'createrepair' %}">Dodaj nowy samochód</a>
+    </div>
+    <div>
+        <h2>Lista napraw:</h2>
+        {% for repair in repairs %}
+        <div>
+            <h3>{{ repair.id }} -- <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a></h3>
     
             {% endfor %}    
         </div>

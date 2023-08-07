@@ -15,6 +15,15 @@ class Car(models.Model):
         return f"{self.manufacturer} {self.model}, vin:{self.vin}"
 
 
+# class PersonMechanic(models.Model):
+#     first_name = models.CharField(max_length=100)
+#     last_name = models.CharField(max_length=100)
+#     function = models.CharField(max_length=100, default='Mechanik')
+#     id = models.IntegerField
+#     avatar = models.ImageField(upload_to='images/avatars', width_field=200, height_field=200, default='images/avatars/default.png')
+#     added_date = models.DateTimeField(auto_now_add=True)
+    
+
 class Repairs(models.Model):
 
     STATUS_NAMES =[
@@ -25,6 +34,7 @@ class Repairs(models.Model):
     main_fault = models.CharField(max_length=100)
     description = models.CharField(max_length=400)
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING, null=True)
+
     serv_mechanic = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     id = models.IntegerField
     pick_up_date = models.DateTimeField(auto_now_add=True)
