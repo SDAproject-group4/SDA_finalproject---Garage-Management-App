@@ -1,17 +1,12 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="container-content">
-    <h2>
-        Dodaj naprawę 
-    </h2>
-
 <div>
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
         
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Dodaj samochód" />
     </form>
 </div>
 {% endblock content %}
