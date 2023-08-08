@@ -2,6 +2,9 @@
       background-color: #242c3a;
       font-family: 'Rubik', sans-serif;
       color: #F1FFF7;
+      height: 100%;
+
+
       
     }
 .navbar-container {
@@ -11,8 +14,10 @@
     text-align: center;
     color: white;
     position: relative;
-    border: 2px solid whitesmoke;
-    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+
     }
 .home-conainter {
     display:grid;
@@ -31,9 +36,10 @@
     color: black;
     margin-top: 5px;
 }
-.car-conainter {
+.car-container {
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+
     justify-content: center;
     text-align: center;
 }
@@ -53,7 +59,15 @@
     display:grid;
     justify-content: center;
     text-align: center;
-      
+}
+
+.garage-title {
+    color:#F1FFF7;
+    text-decoration: none;
+}
+.garage-title:visited {
+    color:#F1FFF7;
+
 }
 .navbar-garage-title h1{
     margin: 30;
@@ -82,10 +96,79 @@
     text-align: center;
     margin: 10px;
     padding: 10px;
+    min-height: 300;
+
 }
-a:visited {
-    color:#F1FFF7
+.car-list-main-page {
+    color:#F1FFF7;
+    text-decoration: none !important;
+    line-height:10px;
 }
+
+.button.a:visited {
+    background-color: #0e1117   ;
+    color: white;    
+}
+
 .button {
-    background-color: blue;
+	box-shadow:inset 0px 1px 3px 0px #4e5066;
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;   
+	cursor:pointer;
+	color:#ffffff;
+	font-size:10px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+
+.button:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+.car {
+    text-decoration: none !important;
+}
+.car-list:visited {
+    color: #F1FFF7;
+}
+.plate {
+    /* background-color: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+    border-radius: 2px !important;
+    padding: 2px 14px 2px 18px;
+    font-family: 'Inconsolata', monospace;  */
+    color: #333;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 30px;
+    line-height: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 10px;
+    
+    width: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    outline: none;
+    
+    &::placeholder {
+        color: #eee;
+    }
+      
 }

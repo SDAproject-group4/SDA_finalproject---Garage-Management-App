@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 
 
 class Car(models.Model):
+    id = models.AutoField(primary_key=True)
+    manufacturer = models.CharField(max_length=20, null=True)
+    model= models.CharField(max_length=100, null=True)
+    year = models.IntegerField()
+    license_plate = models.CharField(max_length=30, null=True)
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     id = models.IntegerField
     manufacturer = models.CharField(max_length=20, null=True)
     model= models.CharField(max_length=100, null=True)
@@ -15,39 +21,31 @@ class Car(models.Model):
         return f"{self.manufacturer} {self.model}, vin:{self.vin}"
 
 
-# class PersonMechanic(models.Model):
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     function = models.CharField(max_length=100, default='Mechanik')
-#     id = models.IntegerField
-#     avatar = models.ImageField(upload_to='images/avatars', width_field=200, height_field=200, default='images/avatars/default.png')
-#     added_date = models.DateTimeField(auto_now_add=True)
-    
 
 class Repairs(models.Model):
 
-    STATUS_NAMES =[
+    STATUS =[
         ('New', 'Nowe'),
         ('Pending', 'W trakcie'),
         ('End', 'Zakończone'),
     ]
     main_fault = models.CharField(max_length=100)
-    description = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, default="Brak opisu.")
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING, null=True)
-
     serv_mechanic = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    id = models.IntegerField
+    id = models.AutoField(primary_key=True)
+
+
     pick_up_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
         max_length=15,
-        choices=STATUS_NAMES, 
+        choices=STATUS, 
         default="New"
                             )
 
     class Meta:
         ordering = ['-updated_at']
-
 
     def __str__(self):
         return self.main_fault
