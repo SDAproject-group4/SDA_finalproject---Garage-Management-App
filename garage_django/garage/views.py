@@ -9,18 +9,23 @@ import requests
 def home(request):
     repairs = Repairs.objects.all()
     cars = Car.objects.all()
-    context = {'repairs':repairs, 'cars':cars}
+    active_repairs= Repairs.objects.filter(status__in=['New', 'Pending'])
+    activeRepairsCount = Repairs.objects.filter(status__in=['New', 'Pending']).count()
+    closedRepairsCount = Repairs.objects.filter(status__in=['End']).count()
+
+    context = {
+        'repairs':repairs, 
+        'cars':cars, 
+        'active_repairs':active_repairs, 
+        'activeRepairsCount':activeRepairsCount,
+        'closedRepairsCount':closedRepairsCount
+        }
     return render(request, 'garage/home.html', context)
 
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     context = {'repair':repair}
     return render(request, 'garage/repair.html', context)
-
-# def activeRepair(request):
-#     active_repairs = Repairs.objects.filter(status="New")
-#     context = {'active_repairs':active_repairs}
-#     return render(request, 'garage/repair.html', context)
 
 def createRepair(request):
     form = RepairForm()
@@ -69,8 +74,17 @@ def car(request, pk):
     context = {'car':car, 'repair':repair}
     return render(request, 'garage/car.html', context)
 
-def repairsCount(request):
-    closed_case = Repairs.objects.filter(status="End").count()
-    context = {'closed_case':closed_case}
-    return render(request, 'garage/home.html', context)
+def activeRepairByCar(request, pk):
+    car = Car.objects.get(id=pk)
+    active_repairs = Repairs.objects.get().filter(id=car.id)
 
+    context = {
+        'car':car, 
+        'active_repairs':active_repairs
+        }
+    return render(request, 'garage/active_repairs.html', context)
+
+def repairstatus(request, pk):
+    repair = Repairs.objects.get(id=pk)
+    context = {'repair':repair}
+    return render(request, "garage/repair_status.html", context)

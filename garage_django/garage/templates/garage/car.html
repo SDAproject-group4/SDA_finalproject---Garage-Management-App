@@ -1,20 +1,29 @@
 {% extends 'main.html' %}
 {% block content %}
 <div class="repair-title">
-    <h1>{{car.manufacturer|upper}} {{car.model|upper}}</h1>
+    <h2>{{car.manufacturer|upper}} {{car.model|upper}}  <a class="plate" style="width:10px">{{repair.car.license_plate}}</a></h2>
 
-    <h3>VIN: {{car.vin|upper}}<br>ROK: {{car.year}}</h3>
+    <a>VIN: {{car.vin|upper}}<br>ROK: {{car.year}}</a>
 </div>
-<div class="car-conainter">
+<div class="car-container">
+
+    <div>
+        <h2>
+            Dane Klienta
+        </h2>
+        <p>Imię i nazwisko:<br>{{car.owner.first_name}} {{car.owner.last_name}}</p>
+        <p>Telefon:<br>{{car.owner.phone}}</p>
+        <p>Email:<br>{{car.owner.email}}</p>
+    </div>
     
     <div>
-        <h1>Opis</h1>
+        <h2>Opis</h2>
         <p>{{car.description}}</p>
 
         
         
     </div>
-    <h1>Aktywne naprawy
+    <h2>Aktywne naprawy
         {% for repair in repairs %}
         
         <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a>
@@ -22,7 +31,7 @@
         {% endfor %}
 
 
-    </h1>
+    </h2>
     <div>
 
     </div>
