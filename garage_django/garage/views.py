@@ -63,9 +63,6 @@ def home(request):
     repairs = Repairs.objects.all()
     return render(request, 'garage/home.html', {'repairs':repairs})
 
-def login(request):
-    return render(request, 'login.html')
-
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     context = {'repair':repair}
