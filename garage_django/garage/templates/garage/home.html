@@ -2,58 +2,9 @@
 
 {% block content %}
 
-<!-- <div>
-    <h1 style="text-align: center;">STRONA GŁÓWNA</h1>
     
 
-</div> -->
-<br>
-<div class="home-conainter">
-    <div class="activ-repair-list">
-        <div class="container-content">
-            <h2>Statystyki:</h2>
-        Liczba samochodów na warsztacie: <br>{{ repairs.count }}<BR><BR>
-        Liczba zamkniętych zleceń: <br>{{ closed_case }}
 
-        </div>
-        
-    </div>
-    <div class="activ-repair-list">
-        <div class="container-content">
-            <h2>Lista aktywnych napraw:</h2>
-            <h3>
-                <button>
-                    <a href="{% url 'createrepair' %}">Dodaj zlecenie</a>
-                </button>
-            </h3>
-            {% for repair in repairs %}
-            <div style="margin:5px;">
-                <a href="{% url 'repair' repair.id %}" class="visited">{{ active_repairs.main_fault|upper }}</a>
-            </div>
-        
-        {% endfor %}
-        </div>
-    </div>
-    <div class="activ-repair-list">
-        <div class="container-content">
-            <h2>Lista samochodów:</h2>
-            <!-- <a href="{% url 'profile' profile.id}">{{user.first_name}} {{user.last_name}}</a> -->
-            <h3>
-                <button>
-                    <a href="{% url 'addcar' %}">Dodaj samochód</a>
-                </button>
-            </h3>
-            {% for car in cars %}
-    
-            <p><a href="{% url 'car' car.id %}">{{car.manufacturer}} {{ car.model }}, {{ car.year}}</a></p>
-
-
-{% block content %}
-
-<!-- <div>
-    <h1 style="text-align: center;">STRONA GŁÓWNA</h1>    
-
-</div> -->
 <br>
 <div class="home-conainter">
     <div class="activ-repair-list">
