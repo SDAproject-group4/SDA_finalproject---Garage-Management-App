@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 import requests
 
 
-
 def home(request):
     repairs = Repairs.objects.all()
     cars = Car.objects.all()
@@ -20,6 +19,7 @@ def home(request):
         'activeRepairsCount':activeRepairsCount,
         'closedRepairsCount':closedRepairsCount
         }
+
     return render(request, 'garage/home.html', context)
 
 def repair(request, pk):
@@ -88,3 +88,4 @@ def repairstatus(request, pk):
     repair = Repairs.objects.get(id=pk)
     context = {'repair':repair}
     return render(request, "garage/repair_status.html", context)
+

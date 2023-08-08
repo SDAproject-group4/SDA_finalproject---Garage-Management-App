@@ -4,6 +4,7 @@
       color: #F1FFF7;
       height: 100%;
 
+
       
     }
 .navbar-container {
@@ -16,6 +17,7 @@
     margin: 0;
     padding: 0;
     border-radius: 8px;
+
     }
 .home-conainter {
     display:grid;
@@ -37,6 +39,7 @@
 .car-container {
     display:grid;
     grid-template-columns: 1fr 2fr 1fr;
+
     justify-content: center;
     text-align: center;
 }
@@ -64,6 +67,7 @@
 }
 .garage-title:visited {
     color:#F1FFF7;
+
 }
 .navbar-garage-title h1{
     margin: 30;

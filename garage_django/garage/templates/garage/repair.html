@@ -4,6 +4,7 @@
         <h1>NAPRAWA: {{repair.main_fault}}</h1>
         <h2>{{repair.car|upper}}</h2>
         <h3><a class="plate">{{repair.car.license_plate}}</a></h3>
+
         
 
         <div class="repair-conainter">
@@ -20,6 +21,7 @@
                         <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ ZLECENIE</a>
                     
 
+
             </div>
             <div>
                 <p>Szczegółowy opis:</p>
@@ -34,6 +36,7 @@
                 <p style="size: small;">Adres mailowy:<br>example</b>
                 <br><br>
                     <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ DANE KLIENTA</a>
+
             </div>
         </div>
 
@@ -45,6 +48,7 @@
     </div>
     <div style="justify-content: center; text-align: center;">
         <a href="{% url 'home' %}" class="button">Wróć do strony głównej</a>
+
     </div>
 
         {% endblock content %}
