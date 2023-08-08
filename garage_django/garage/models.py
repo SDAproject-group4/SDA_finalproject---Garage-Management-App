@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+
 class Car(models.Model):
     id = models.AutoField(primary_key=True)
     manufacturer = models.CharField(max_length=20, null=True)
@@ -20,8 +21,6 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.manufacturer} {self.model}, vin:{self.vin}"
 
-
-
 class Repairs(models.Model):
 
     STATUS =[
@@ -34,8 +33,6 @@ class Repairs(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING, null=True)
     serv_mechanic = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     id = models.AutoField(primary_key=True)
-
-
     pick_up_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(

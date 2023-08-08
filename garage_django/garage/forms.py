@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+
 from .models import Repairs, Car
 from django import forms
 
@@ -6,13 +7,6 @@ from django import forms
 class RepairForm(ModelForm):
     class Meta:
         model = Repairs
-
-
-class RepairForm(ModelForm):
-    class Meta:
-        model = Repairs
-
-
         fields = '__all__'
         exclude = [
             'serv_mechanic'

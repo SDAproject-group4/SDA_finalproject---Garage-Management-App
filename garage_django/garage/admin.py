@@ -7,4 +7,5 @@ from .models import Repairs, Car
 admin.site.register(Repairs)
 admin.site.register(Car)
 
+
 # admin.site.register(PersonMechanic)
