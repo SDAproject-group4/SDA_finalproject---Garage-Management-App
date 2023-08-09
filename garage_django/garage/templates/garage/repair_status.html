@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1>STATUS naprawy</h1> 
+<h2>Usterka główna: {{repair.main_fault}}</h2>
+<h2>{{repair.car.manufacturer}} {{repair.car.model}}</h2>
+<p>{{repair.description}}</p>
+<p>{{repair.status}}</p>
+<button>wyslij wiadomosc do mechanika</button>
+{% endblock content %}

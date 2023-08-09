@@ -1,12 +1,51 @@
-{% extends 'main.html' %}
-{% block content %}
-<h1>NAPRAWA: {{repair.main_fault}}</h1>
-<h3>STATUS: {{repair.status}}</h3>
-<hr>
-<a style="size: small;">Utworzono: {{repair.pick_up_date}}</a><br>
-<a style="size: small;">Ostatnie zmiany: {{repair.updated_at}}</a>
-<p>Szczegółowy opis:</p>
-<p>{{repair.description}}</p>
+        {% extends 'main.html' %}
+        {% block content %}
+    <div class="repair-title">
+        <h1>NAPRAWA: {{repair.main_fault}}</h1>
+        <h2>{{repair.car|upper}}</h2>
+        <h3><a class="plate">{{repair.car.license_plate}}</a></h3>
+        
 
-{% endblock content %}
+        <div class="repair-conainter">
+            
+
+            <div>
+                <p>STATUS: {{repair.status}}</p>
+                <p>Przyjmujący zlecenie:<br>{{ repair.serv_mechanic }}</p>
+                <p style="size: small;">Utworzono:<br>{{repair.pick_up_date}}</h><br>
+                    <p style="size: small;">Ostatnie zmiany:<br>{{repair.updated_at}}</b><br>
+            
+                    <p style="size: small;">Czas na warsztacie<br>{{repair.pick_up_date|timesince}}</a>
+                    <br><br>
+                        <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ ZLECENIE</a>
+                    
+
+            </div>
+            <div>
+                <p>Szczegółowy opis:</p>
+                <p>{{repair.description}}</p>
+
+            </div>
+            <div>
+                <h2>Dane klienta</h2>
+                <p style="size: small;">Imię i nazwisko:<br>{{repair.car.user.username}}</h><br>
+                <p style="size: small;">Telefon kontaktowy:<br>example</b><br>
+        
+                <p style="size: small;">Adres mailowy:<br>example</b>
+                <br><br>
+                    <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ DANE KLIENTA</a>
+            </div>
+        </div>
+
+        
+        
+        <hr>
+        
+
+    </div>
+    <div style="justify-content: center; text-align: center;">
+        <a href="{% url 'home' %}" class="button">Wróć do strony głównej</a>
+    </div>
+
+        {% endblock content %}
 

@@ -1,12 +1,28 @@
-<div>
-    <a href="/"><img src="https://brandslogos.com/wp-content/uploads/images/large/garage-logo.png" height="100">GARAGE_APP</a>
+{% load static %}
+
+
+<div class="navbar-container">
+    <div class="navbar-logo">
+        <a href="/"><img src="{% static 'images/sample-logo.png' %}" width="200"></a>
+
+    </div>
+    <div class="navbar-garage-title">
+        <h1>
+            <a href="/" class="garage-title">
+
+            SPEED CAR Garage
+        </a>
+    </h1>
+        <!-- <a href="https://github.com/SDAproject-group4" style="font-size: small; margin-bottom: 18px;"><em>by group4</em></a> -->
+    </div>
+
+    <div class="navbar-logo">
+        {% if request.user.is_authenticated %}
+        <p>Hello {{request.user}}</p>
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %} 
+    </div>
+    
 </div>
-
-{% if request.user.is_authenticated %}
-<p>Hello {{request.user}}</p>
-<a href="{% url 'logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
-
-<hr>
