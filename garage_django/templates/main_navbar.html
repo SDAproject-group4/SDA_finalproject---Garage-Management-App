@@ -1,0 +1,33 @@
+{% load static %}
+
+
+<div class="navbar-container">
+    <div class="navbar-logo">
+        <a href="/"><img src="{% static 'images/logo.png' %}" width="100"></a>
+
+    </div>
+    <div class="navbar-garage-title">
+        <h1>
+            <a href="/" class="garage-title">
+
+            GarageApp - aplikacja do zarządzania Twoim warsztatem
+        </a>
+    </h1>
+
+        <!-- <a href="https://github.com/SDAproject-group4" style="font-size: small; margin-bottom: 18px;"><em>by group4</em></a> -->
+    </div>  
+
+    
+    <div class="navbar-logo"     >
+        {% if request.user.is_authenticated %}
+        <p>Hello, {{request.user}}!</p>
+        <a href="{% url 'logout' %}" style="color: white; text-decoration: none !important; ">Wyloguj się</a>
+        {% else %}
+        <a href="{% url 'login' %}" style="color: white; text-decoration: none !important;">Zaloguj się </a>
+        {% endif %}
+        <p>lub</p>
+        <p><a href="{% url 'clientlogin' %}" target="_blank" style="color: white; text-decoration: none !important;"> Sprawdź status naprawy</a></p>
+
+    </div>
+    
+</div>

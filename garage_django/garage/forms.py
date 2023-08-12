@@ -1,6 +1,8 @@
 from django.forms import ModelForm
+
 from .models import Repairs, Car
 from django import forms
+
 
 class RepairForm(ModelForm):
     class Meta:
@@ -17,4 +19,3 @@ class carForm(ModelForm):
     class Meta:
             model = Car
             fields = '__all__'
-        

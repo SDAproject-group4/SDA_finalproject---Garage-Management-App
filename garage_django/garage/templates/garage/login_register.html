@@ -1,7 +1,6 @@
-{% extends 'main.html' %}
+{% extends 'homePage_main.html' %}
 
 {% block content %}
-
 
 {% if page == 'login' %}
 
@@ -18,7 +17,7 @@
         <input type="submit" value="Login" />
     </form>
     
-    <p>Havent signet up yest?</p>
+    <p>Haven't signed up yet?</p>
     <a href="{% url 'register' %}">Sign up</a>
    
 </div>
@@ -28,11 +27,11 @@
 <div>
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form.as_p }}
         <input type="submit" value="Register" />
     </form>
     
-    <p>Already signet up yet?</p>
+    <p>Already signed up?</p>
     <a href="{% url 'login' %}">Login</a>
 
 </div>

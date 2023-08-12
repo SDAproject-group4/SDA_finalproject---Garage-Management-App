@@ -4,14 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .models import Repairs, Car
+from django.contrib.auth.decorators import login_required
+from .models import Repairs, Car, Client
 from .forms import RepairForm, carForm
 # import requests
-
-
-
-
-# Create your views here.
 
 def loginPage(request):
     page = 'login'
@@ -38,7 +34,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('index')
 
 def registerPage(request):
     form = UserCreationForm()
@@ -52,29 +48,33 @@ def registerPage(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'An error occured during registration')
+            messages.error(request, 'An error occurred during registration')
 
     return render(request, 'garage/login_register.html', {'form': form})
 
+@login_required(login_url="login/")
 def home(request):
     repairs = Repairs.objects.all()
     cars = Car.objects.all()
-    active_repairs= Repairs.objects.filter(status__in=['New', 'Pending'])
+    active_repairs = Repairs.objects.filter(status__in=['New', 'Pending'])
     activeRepairsCount = Repairs.objects.filter(status__in=['New', 'Pending']).count()
     closedRepairsCount = Repairs.objects.filter(status__in=['End']).count()
 
     context = {
-        'repairs':repairs, 
-        'cars':cars, 
-        'active_repairs':active_repairs, 
-        'activeRepairsCount':activeRepairsCount,
-        'closedRepairsCount':closedRepairsCount
-        }
+        'repairs': repairs,
+        'cars': cars,
+        'active_repairs': active_repairs,
+        'activeRepairsCount': activeRepairsCount,
+        'closedRepairsCount': closedRepairsCount
+    }
+
     return render(request, 'garage/home.html', context)
 
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
-    context = {'repair':repair}
+    car = Car.objects.get(id=repair.car_id)
+
+    context = {'repair': repair, 'car': car}
     return render(request, 'garage/repair.html', context)
 
 def createRepair(request):
@@ -103,7 +103,7 @@ def updateRepair(request, pk):
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     repairs = user.repair_set.all()
-    context = {'user':user, 'repairs':repairs}
+    context = {'user': user, 'repairs': repairs}
     return render(request, 'garage/profile.html', context)
 
 def addCar(request):
@@ -121,7 +121,7 @@ def addCar(request):
 def car(request, pk):
     car = Car.objects.get(id=pk)
     repair = Repairs.objects.get(id=pk)
-    context = {'car':car, 'repair':repair}
+    context = {'car': car, 'repair': repair}
     return render(request, 'garage/car.html', context)
 
 def activeRepairByCar(request, pk):
@@ -129,12 +129,19 @@ def activeRepairByCar(request, pk):
     active_repairs = Repairs.objects.get().filter(id=car.id)
 
     context = {
-        'car':car, 
-        'active_repairs':active_repairs
-        }
+        'car': car, 
+        'active_repairs': active_repairs
+    }
     return render(request, 'garage/active_repairs.html', context)
 
 def repairstatus(request, pk):
     repair = Repairs.objects.get(id=pk)
-    context = {'repair':repair}
+    context = {'repair': repair}
     return render(request, "garage/repair_status.html", context)
+
+def clientLogin(request):
+    return render(request, 'garage/client_login.html')
+
+def index(request):
+    return render(request, 'garage/index.html')
+

@@ -24,6 +24,8 @@
         
     </div>
     <h2>Aktywne naprawy
+
+
         {% for repair in repairs %}
         
         <a href="{% url 'repair' repair.id %}">{{ repair.main_fault }}</a>
