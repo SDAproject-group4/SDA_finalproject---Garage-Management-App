@@ -60,16 +60,6 @@ def home(request):
     activeRepairsCount = Repairs.objects.filter(status__in=['New', 'Pending']).count()
     closedRepairsCount = Repairs.objects.filter(status__in=['End']).count()
 
-    context = {
-        'repairs': repairs,
-        'cars': cars,
-        'active_repairs': active_repairs,
-        'activeRepairsCount': activeRepairsCount,
-        'closedRepairsCount': closedRepairsCount
-    }
-
-    return render(request, 'garage/home.html', context)
-
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     car = Car.objects.get(id=repair.car_id)
