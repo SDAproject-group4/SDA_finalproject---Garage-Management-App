@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .models import Repairs, Car
+from django.contrib.auth.decorators import login_required
+
+from .models import Repairs, Car, Client
 from .forms import RepairForm, carForm
 import requests
 
@@ -34,7 +36,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('index')
 
 def registerPage(request):
     form = UserCreationForm()
@@ -52,6 +54,7 @@ def registerPage(request):
 
     return render(request, 'garage/login_register.html', {'form': form})
 
+@login_required(login_url="login/")
 def home(request):
     repairs = Repairs.objects.all()
     cars = Car.objects.all()
@@ -71,7 +74,13 @@ def home(request):
 
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
-    context = {'repair':repair}
+    car = Car.objects.get(id=repair.car_id)
+    # client=Client.objects.get(id=client.id)
+
+    context = {'repair':repair, 
+               'car':car, 
+            #    'client':client
+               }
     return render(request, 'garage/repair.html', context)
 
 def createRepair(request):
@@ -136,4 +145,9 @@ def repairstatus(request, pk):
     context = {'repair':repair}
     return render(request, "garage/repair_status.html", context)
 
+def clientLogin(request):
+    
+    return render(request, 'garage/client_login.html')
 
+def index(request):
+    return render(request, 'garage/index.html')
