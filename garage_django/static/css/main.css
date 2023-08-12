@@ -10,7 +10,7 @@
 .navbar-container {
     background-color: #445064;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     text-align: center;
     color: white;
     position: relative;
@@ -21,7 +21,7 @@
     }
 .home-conainter {
     display:grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr 1fr;
     justify-content: center;
     text-align: center;
     background-color: #29303e;
