@@ -6,10 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.views import View
 
-from .models import Repairs, Car, Client
-from .forms import RepairForm, carForm
-import requests
+from .models import Repairs, Car, Client, Messages
+from .forms import RepairForm, carForm, clientForm
+
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 def loginPage(request):
     page = 'login'
@@ -75,11 +79,22 @@ def home(request):
 def repair(request, pk):
     repair = Repairs.objects.get(id=pk)
     car = Car.objects.get(id=repair.car_id)
+    client = Client.objects.get(id=repair.client_id)
+    repair_messages = repair.messages_set.all().order_by('-created_at')
     # client=Client.objects.get(id=client.id)
+
+    if request.method == 'POST':
+        message = Messages.objects.create(
+            user=request.user,
+            repair=repair,
+            body=request.POST.get('body')
+        )
+        return redirect('repair', pk=repair.id)
 
     context = {'repair':repair, 
                'car':car, 
-            #    'client':client
+               'client':client,
+               'repair_messages':repair_messages
                }
     return render(request, 'garage/repair.html', context)
 
@@ -92,6 +107,7 @@ def createRepair(request):
             repair.user = request.user
             repair.save()
             return redirect('home')
+        
     context = {'form': form}
     return render(request, 'garage/create_repair.html', context)
 
@@ -140,10 +156,23 @@ def activeRepairByCar(request, pk):
         }
     return render(request, 'garage/active_repairs.html', context)
 
-def repairstatus(request, pk):
-    repair = Repairs.objects.get(id=pk)
-    context = {'repair':repair}
-    return render(request, "garage/repair_status.html", context)
+def repairStatus(request):
+    template_name = 'garage/repair_status.html'
+    
+    if request.method == 'POST':
+        repair_form = RepairForm(request.POST)
+        if repair_form.is_valid():
+            license_plate = repair_form.cleaned_data['license_plate']
+            phone = repair_form.cleaned_data['phone']
+
+            repair = Repairs.objects.filter(car__license_plate=license_plate, client__phone=phone).first()
+
+            return render(request, template_name, {'repair_form': repair_form, 'repair': repair})
+
+    else:
+        repair_form = RepairForm()
+        return render(request, template_name, {'repair_form': repair_form})
+
 
 def clientLogin(request):
     
@@ -151,3 +180,32 @@ def clientLogin(request):
 
 def index(request):
     return render(request, 'garage/index.html')
+
+def addClient(request):
+    form = clientForm()
+    if request.method == 'POST':
+        form = clientForm(request.POST)
+        if form.is_valid():
+            addclient = form.save(commit=False)
+            addclient.user = request.user
+            addclient.save()
+        email=request.POST.get('email')
+        send_mail(
+            "Zostałeś dodany jako klient",
+            "Twój samochód został dodany do naszego systemu", 
+            'settings.EMAIL_HOST_USER',
+            ['sloneczny40@gmail.com'],
+            fail_silently=False
+            )
+        return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'garage/add_client.html', context)
+
+def cars(request):
+    car = Car.objects.all()
+
+    context = {
+        'car':car, 
+        }
+    return render(request, 'garage/cars.html', context)

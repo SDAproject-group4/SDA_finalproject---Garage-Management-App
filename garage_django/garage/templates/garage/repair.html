@@ -1,55 +1,94 @@
-        {% extends 'main.html' %}
-        {% block content %}
-    <div class="repair-title">
-        <h1>NAPRAWA: {{repair.main_fault}}</h1>
-        <h2>{{repair.car|upper}}</h2>
-        <h3><a class="plate">{{repair.car.license_plate}}</a></h3>
+{% extends 'main.html' %}
+{% block content %}
+<div class="repair-title">
+    <h1>{{repair.car.manufacturer|upper}} {{repair.car.model|upper}} - {{repair.main_fault|upper}}</h1>
+    <hr>
+    <h2></h2>
 
-        
-
-        <div class="repair-conainter">
-            
-
-            <div>
-                <p>STATUS: {{repair.status}}</p>
-                <p>Przyjmujący zlecenie:<br>{{ repair.serv_mechanic }}</p>
-                <p style="size: small;">Utworzono:<br>{{repair.pick_up_date}}</h><br>
-                    <p style="size: small;">Ostatnie zmiany:<br>{{repair.updated_at}}</b><br>
-            
-                    <p style="size: small;">Czas na warsztacie<br>{{repair.pick_up_date|timesince}}</a>
-                    <br><br>
-                        <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ ZLECENIE</a>
-                    
-
-
-            </div>
-            <div>
-                <p>Szczegółowy opis:</p>
-                <p>{{repair.description}}</p>
-
-            </div>
-            <div>
-                <h2>Dane klienta</h2>
-                <p style="size: small;">Imię i nazwisko:<br>{{repair.car.client.first_name}}</h><br>
-                <p style="size: small;">Telefon kontaktowy:<br>example</b><br>
-        
-                <p style="size: small;">Adres mailowy:<br>example</b>
+    <div class="row">
+        <div class="col-lg-3    ">
+            <p>
+                {{repair.car.manufacturer|upper}} {{repair.car.model|upper}}
+            </p>
+            <p class="badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill">{{repair.car.license_plate}}</>
+            <p>STATUS: {{repair.status}}</p>
+            <hr>
+            <p style="size: small;">Czas na warsztacie<br>{{repair.pick_up_date|timesince}}</a>
                 <br><br>
+            <p class="text-start" style="size: small;">Kient: <br>{{ client.first_name }} {{ client.last_name }}</h><br>
+                <p class="text-start"style="size: small;">Telefon kontaktowy:<br>{{ client.phone }}</b><br>
+    
+                <p class="text-start"style="size: small;">Adres mailowy:<br>{{ client.email }}</b>
+                    <br><br>
                     <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ DANE KLIENTA</a>
-
-            </div>
         </div>
+        <div class="col border-start border-end">
+            <p>Szczegółowy opis:</p>
+            <p>{{repair.description}}</p>
+            <a href="{% url 'updaterepair' repair.id %}" class="button" id="edit-room">EDYTUJ ZLECENIE</a>
+        </div>
+        <div class="col-lg-3">
+            {% for message in repair_messages%}
+            <div>
+                <small>
+                    Mechanik: {{message.user.first_name}} {{message.user.last_name}},<br>{{ message.created_at|timesince}}
+                </small>
+                <div>
+                    {{message.body}}<br>
+                    <div class="text-white ">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name="body" placeholder="Wpisz swoją wiadomość">
 
-        
-        
-        <hr>
-        
-
+                </form>
+            </div>
+            
+        </div>
     </div>
-    <div style="justify-content: center; text-align: center;">
-        <a href="{% url 'home' %}" class="button">Wróć do strony głównej</a>
+    <div class="row">
+        <div class="col-lg-2">
 
+        </div>
+        <div class="col">
+            
+        </div>
+        <div class="col-lg-2">
+
+        </div>
     </div>
+    
+    <div class="row">
+        <div class="col mt-4">
+            <hr>
+            <p class="fs-6">Przyjmujący samochód: {{ repair.serv_mechanic.first_name }} {{ repair.serv_mechanic.last_name }}
+            <p>
+                <a class="fs-6">Utworzono: {{repair.pick_up_date}}</a> |
+                <a style="size: small;">Ostatnie zmiany: {{repair.updated_at}}</b><br></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'home' %}">
 
-        {% endblock content %}
+            <button class="btn btn-light rounded-pill px-3">POWRÓT DO PULPITU</button>
+        </a>
 
+        </div>
+    </div>
+       
+
+
+</div>
+</div>
+
+
+
+
+
+{% endblock content %}

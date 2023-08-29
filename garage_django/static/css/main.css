@@ -1,3 +1,7 @@
+html{
+    background-color: gray;
+} 
+ /* 
  body {
       background-color: #242c3a;
       font-family: 'Rubik', sans-serif;
@@ -10,7 +14,7 @@
 .navbar-container {
     background-color: #445064;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     text-align: center;
     color: white;
     position: relative;
@@ -21,7 +25,7 @@
     }
 .home-conainter {
     display:grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     justify-content: center;
     text-align: center;
     background-color: #29303e;
@@ -145,7 +149,7 @@
     border: 1px solid black !important;
     border-radius: 2px !important;
     padding: 2px 14px 2px 18px;
-    font-family: 'Inconsolata', monospace;  */
+    font-family: 'Inconsolata', monospace;  
     color: #333;
     background-color: #fff;
     background-repeat: no-repeat;
@@ -171,4 +175,4 @@
         color: #eee;
     }
       
-}
+} */

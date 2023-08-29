@@ -12,8 +12,11 @@ urlpatterns = [
     path('profile/<str:pk>/', views.userProfile, name='userprofile'),
     path('add-car/', views.addCar, name='addcar'),
     path('car/<str:pk>/', views.car, name='car'),
-    path('repair-status/<str:pk>/', views.repairstatus, name='repairstatus'),
+    path('repair-status/', views.repairStatus, name='repairstatus'),
     path('client-login/', views.clientLogin, name='clientlogin'),
     path('', views.index, name='index'),
+    # path('vin/', views.vin_data_view, name='vindata'),
+    path('add-client/', views.addClient, name='addclient'),
+    path('cars', views.cars, name='cars'),
 
 ]

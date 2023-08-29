@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VIN Data</title>
+</head>
+<body>
+    <h1>Retrieve VIN Data</h1>
+    <form method="GET">
+        <label for="vin">Enter VIN:</label>
+        <input type="text" name="vin" id="vin" value="{{ vin }}">
+        <button type="submit">Get Data</button>
+    </form>
+    
+    {% if data %}
+        <h2>Data for VIN: {{ vin }}</h2>
+        <pre>{{ data|safe }}</pre>
+    {% elif vin %}
+        <p>No data available for VIN: {{ vin }}</p>
+    {% endif %}
+</body>
+</html>

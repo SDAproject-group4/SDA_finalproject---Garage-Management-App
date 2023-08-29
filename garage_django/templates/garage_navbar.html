@@ -1,6 +1,11 @@
 {% load static %}
 
 
+
+
+
+
+
 <div class="navbar-container">
     <div class="navbar-logo">
         <a href="/"><img src="{% static 'images/sample-logo.png' %}" width="200"></a>
@@ -8,7 +13,7 @@
     </div>
     <div class="navbar-garage-title">
         <h1>
-            <a href="/" class="garage-title">
+            <a href="/home" class="garage-title">
 
             SPEED CAR Garage
         </a>
@@ -18,15 +23,38 @@
     </div>
 
     <div class="navbar-logo">
-        
-    </div>
-    <div class="navbar-logo">
         {% if request.user.is_authenticated %}
-        <p>Hello {{request.user}}</p>
+        <p>Witaj {{request.user.first_name}}</p>
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'login' %}">Login</a>
         {% endif %}
     </div>
+    
+    <div class="container" bis_skin_checked="1">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <div class="col-md-3 mb-2 mb-md-0" bis_skin_checked="1">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+          </div>
+    
+          
+    
+          <div class="col-md-3 text-end" bis_skin_checked="1">
+            {% if request.user.is_authenticated %}
+        <p>Witaj {{request.user.first_name}}</p>
+        <a >Logout</a><button href="{% url 'logout' %}" type="button" class="btn btn-outline-primary me-2">Wyloguj się</button>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a><button type="button" class="btn btn-outline-primary me-2">Login</button>
+        {% endif %}
+
+            <button type="button" class="btn btn-outline-primary me-2">Login</button>
+            <button type="button" class="btn btn-primary">Sign-up</button>
+          </div>
+
+          
+        </header>
+      </div>
     
 </div>

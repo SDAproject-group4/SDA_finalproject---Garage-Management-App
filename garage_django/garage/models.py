@@ -8,6 +8,9 @@ class Client(models.Model):
     phone = models.CharField(max_length=9)
     email = models.EmailField(max_length=100)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 class Car(models.Model):
     license_plate = models.CharField(max_length=30, null=True)
     client = models.OneToOneField(Client, on_delete=models.DO_NOTHING, null=True)
@@ -47,3 +50,13 @@ class Repairs(models.Model):
 
     def __str__(self):
         return self.main_fault
+    
+class Messages (models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    repair = models.ForeignKey(Repairs, on_delete=models.CASCADE, null=True)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.body[0:50]
