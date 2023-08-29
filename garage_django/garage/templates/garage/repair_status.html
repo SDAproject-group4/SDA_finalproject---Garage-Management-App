@@ -1,9 +1,25 @@
-{% extends 'main.html' %}
+{% extends 'homePage_main.html' %}
 {% block content %}
-<h1>STATUS naprawy</h1> 
-<h2>Usterka główna: {{repair.main_fault}}</h2>
-<h2>{{repair.car.manufacturer}} {{repair.car.model}}</h2>
-<p>{{repair.description}}</p>
-<p>{{repair.status}}</p>
-<button>wyslij wiadomosc do mechanika</button>
+s<div style="text-align: center;">
+    <h3>Sprawdź status naprawy</h3>
+    <p>Wprowadź Numer Rejestracyjny i Numer Telefonu</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="license_plate">Nume r Rejestracyjny:</label>
+        <input type="text" name="license_plate"><br>
+
+        <label for="phone">Numer Telefonu:</label>
+        <input type="text" name="phone" ><br><br>
+
+        <button type="submit">Sprawdź Status Naprawy</button>
+    </form>
+    {% if repair %}
+        <h2>Informacje o Naprawie</h2>
+        <p>Opis Naprawy: {{ repair.main_fault }}</p>
+        <p>Status: {{ repair.status }}</p>
+        <!-- Inne informacje o naprawie -->
+    
+    {% endif %}
+</div>
+
 {% endblock content %}

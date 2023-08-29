@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    
+<div class="activ-repair-list">
+        <div class="container-content">
+            
+            <h2>Lista samochodów</h2>
+            <hr>
+
+            {% for car in car %}
+
+            <p><a href="{% url 'car' car.id %}" class="car-list">{{car.manufacturer}} {{ car.model }}, {{ car.year}}</a>
+            </p>
+
+            {% endfor %}
+        </div>
+        <button class="btn btn-light rounded-pill px-3" onclick="history.back()">Go Back</button>
+
+
+     </div>     
+{% endblock content %}
