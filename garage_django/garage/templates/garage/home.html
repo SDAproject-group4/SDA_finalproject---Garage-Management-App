@@ -1,68 +1,50 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
-
 <br>
-
 <div class="body-bg">
     <div class="activ-repair-list">
         <div class="mt-8">
 
             <h1>TWÓJ PULPIT</h1>
             <hr>
-<div class="row">
-
-
-            <div class="col">
-
-                <h2>Statystyki:</h2>
-
-
-                Liczba samochodów na warsztacie: <br>{{ activeRepairsCount }}<BR><BR>
-                Liczba zamkniętych zleceń: <br>{{ closedRepairsCount }}
-
-            </div>
-            <div class="col">
-                <h2>Lista aktywnych napraw:</h2>
-
-                <!-- {% for repair in repairs %}
-                <div style="margin:5px;">
-                    <a href="{% url 'repair' repair.id %}" class="car-list-main-page">{{ active_repairs.main_fault|upper }}</a>
+                <div class="row">
+                <div class="col">
+                    <h2>Statystyki:</h2>
+                    Liczba samochodów na warsztacie: <br>{{ activeRepairsCount }}<BR><BR>
+                    Liczba zamkniętych zleceń: <br>{{ closedRepairsCount }}
                 </div>
-                {% endfor %} -->
-                {% for repair in active_repairs %}
-                <div style="margin:5px;">
-                    
-                        <a href="{% url 'repair' repair.id %}">
-                            <button class="btn btn-dark rounded-pill px-3" type="button">{{repair.car.manufacturer}}
-                                {{repair.car.model}} - {{ repair.main_fault|upper }}</button>
-                        </a>
-                </div>
-                {% endfor %}
-            </div>
-            <div class="col">
-                <p>
-                    <input type="text" placeholder="Podaj VIN"><br>
-                    <a href="#" class="btn btn-light rounded-pill px-3">ZDEKODUJ VIN</a>
-                                </p>
-                
-                <p><a href="#" class="btn btn-light rounded-pill px-3">SZUKAJ CZĘŚCI</a><br></p>
-                <p>
-                    <a href="#" class="btn btn-light rounded-pill px-3">SZUKAJ</a>
-                </p>
+                <div class="col">
+                    <h2>Lista aktywnych napraw:</h2>
 
+                    <!-- {% for repair in repairs %}
+                    <div style="margin:5px;">
+                        <a href="{% url 'repair' repair.id %}" class="car-list-main-page">{{ active_repairs.main_fault|upper }}</a>
+                    </div>
+                    {% endfor %} -->
+                    {% for repair in active_repairs %}
+                    <div style="margin:5px;">
+                        <a href="{% url 'repair' repair.id %}"><button class="btn btn-dark rounded-pill px-3" type="button">{{repair.car.manufacturer}}{{repair.car.model}} - {{ repair.main_fault|upper }}</button></a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <p>
+                        <input type="text" placeholder="Podaj VIN"><br>
+                        <a href="#" class="btn btn-light rounded-pill px-3">ZDEKODUJ VIN (nieaktywne)</a>
+                    </p>
+
+                    <p>
+                        <a href="#" class="btn btn-light rounded-pill px-3">SZUKAJ CZĘŚCI (nieaktywne)</a><br></p>
+                    <p>
+                        <a href="#" class="btn btn-light rounded-pill px-3">SZUKAJ (nieaktywne)</a>
+                    </p>
+
+                </div>
             </div>
         </div>
-            
-
-        </div>
-
     </div>
     <div class="activ-repair-list">
         <div class="container-content">
-            
-
         </div>
     </div>
     <!-- <div class="activ-repair-list">
@@ -87,8 +69,7 @@
 
 
 </div>
-</div>
-</div>
+
 
 
 {% endblock content %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Client(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
@@ -11,12 +12,13 @@ class Client(models.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
+
 class Car(models.Model):
     license_plate = models.CharField(max_length=30, null=True)
     client = models.OneToOneField(Client, on_delete=models.DO_NOTHING, null=True)
     id = models.IntegerField
     manufacturer = models.CharField(max_length=20, null=True)
-    model= models.CharField(max_length=100, null=True)
+    model = models.CharField(max_length=100, null=True)
     year = models.IntegerField()
     vin = models.CharField(max_length=17, unique=True, null=True)
     description = models.TextField(blank=True, max_length=200)
@@ -26,7 +28,7 @@ class Car(models.Model):
 
 
 class Repairs(models.Model):
-    STATUS =[
+    STATUS = [
         ('New', 'Nowe'),
         ('Pending', 'W trakcie'),
         ('End', 'Zakończone'),
@@ -41,17 +43,18 @@ class Repairs(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
         max_length=15,
-        choices=STATUS, 
+        choices=STATUS,
         default="New"
-                            )
+    )
 
     class Meta:
         ordering = ['-updated_at']
 
     def __str__(self):
         return self.main_fault
-    
-class Messages (models.Model):
+
+
+class Messages(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     repair = models.ForeignKey(Repairs, on_delete=models.CASCADE, null=True)
     body = models.TextField()
